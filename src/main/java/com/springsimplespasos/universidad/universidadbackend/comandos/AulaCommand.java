@@ -27,9 +27,8 @@ public class AulaCommand implements Serializable {
         //findAulaByNroAula
         System.out.println("---------- buscar aula por N° de aula ----------");
         System.out.println(aulaDao.findAulaByNroAula(ObjetosDummy.getAula123().getNroAula()));
-//      Pabellon pabellon=pabellonDAO.findById(1).orElseThrow();
+        //Pabellon pabellon=pabellonDAO.findById(1).orElseThrow();
         aulaDao.findAulasByPizarron(Pizarron.PIZARRA_BLANCA);
-//      aulaDAO.findAulasByPabellonNombre(pabellon.toString());*/
-
+        //aulaDAO.findAulasByPabellonNombre(pabellon.toString());*/
     }
 }

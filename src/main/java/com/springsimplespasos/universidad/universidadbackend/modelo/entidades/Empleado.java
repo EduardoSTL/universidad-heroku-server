@@ -2,7 +2,7 @@ package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.TipoEmpleado;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity

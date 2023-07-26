@@ -1,6 +1,6 @@
 package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Embeddable

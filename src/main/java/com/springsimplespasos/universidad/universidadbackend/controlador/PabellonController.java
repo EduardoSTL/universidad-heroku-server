@@ -1,4 +1,4 @@
-/*
+
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
 import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
@@ -38,4 +38,4 @@ public class PabellonController extends GenericController<Pabellon, PabellonDAO>
         return service.findAllPabellonByNombre(nombre);
     }
 }
-*/
+

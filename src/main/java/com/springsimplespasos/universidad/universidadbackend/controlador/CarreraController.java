@@ -1,13 +1,18 @@
-/*
+
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
 import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Carrera;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.CarreraDAO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -30,27 +35,40 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
     }
 
     @PostMapping
-    public Carrera altaCarrera(@RequestBody Carrera carrera){
-        if(carrera.getCantidadAnios() < 0) {
+    public ResponseEntity<?> altaCarrera(@Valid @RequestBody Carrera carrera, BindingResult result){
+        /*if(carrera.getCantidadAnios() < 0) {
             throw new BadRequestException("El campo cantida de años no puede ser negativo");
         }
         if(carrera.getCantidaMaterias() < 0) {
             throw new BadRequestException("El campo cantida de materias no puede ser negativo");
+        }*/
+        Map<String, Object> validaciones = new HashMap<>();
+        if (result.hasErrors()){
+            result.getFieldErrors()
+                    .forEach (error -> validaciones.put(error.getField(), error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(validaciones);
         }
-        return service.save(carrera);
+        return ResponseEntity.ok(service.save(carrera));
     }
 
+    //ResponseEntity
     @PutMapping("/{id}")
-    public Carrera actualizarCarrera(@PathVariable Integer id, @RequestBody Carrera carrera){
+    public ResponseEntity<?> actualizarCarrera(@PathVariable Integer id, @RequestBody Carrera carrera){
+        Map<String, Object> mensaje = new HashMap<>();
         Carrera carreraUpdate = null;
         Optional<Carrera> oCarrera = service.findById(id);
         if(!oCarrera.isPresent()){
-            throw new BadRequestException(String.format("La carrera con id %d no existe", id));
+            //throw new BadRequestException(String.format("La carrera con id %d no existe", id));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("%s con ID %d no existe", nombreEntidad, id));
+            return ResponseEntity.badRequest().body(mensaje);
         }
         carreraUpdate = oCarrera.get();
         carreraUpdate.setCantidadAnios(carrera.getCantidadAnios());
         carreraUpdate.setCantidaMaterias(carrera.getCantidaMaterias());
-        return service.save(carreraUpdate);
+        mensaje.put("datos", service.save(carreraUpdate));
+        mensaje.put("succes", Boolean.TRUE);
+        return ResponseEntity.ok(mensaje);
     }
 
     @DeleteMapping("/{id}")
@@ -79,4 +97,3 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         return service.buscarCarrerasPorProfesorNombreYApellido(nombre,apellido);
     }
 }
-*/

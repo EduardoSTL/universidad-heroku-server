@@ -1,4 +1,4 @@
-/*
+
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
 import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
@@ -42,4 +42,4 @@ public class EmpleadoController extends PersonaController{
         return service.save(empleadoUpdate);
     }
 }
-*/
+

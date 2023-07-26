@@ -1,7 +1,7 @@
 package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "alumnos")

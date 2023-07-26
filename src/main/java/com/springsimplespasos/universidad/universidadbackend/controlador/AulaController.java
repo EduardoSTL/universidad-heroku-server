@@ -1,4 +1,4 @@
-/*
+
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
 import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
@@ -68,4 +68,4 @@ public class AulaController extends GenericController<Aula, AulaDAO>{
         return service.save(aulaUpdate);
     }
 }
-*/
+
