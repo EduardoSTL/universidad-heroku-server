@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,6 +32,22 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         }
         return oCarrera.get();
     }
+    //ignore:
+    /*@GetMapping("/{codigo}")
+    public ResponseEntity<?> obtenerPorId(@PathVariable(value = "codigo", required = false) Integer id) {
+        Map<String, Object> mensaje = new HashMap<>();
+        Optional<Carrera> oCarrera = service.findById(id);
+
+        if (!oCarrera.isPresent()) {
+            mensaje.put("success", Boolean.FALSE);
+            mensaje.put("message", String.format("La carrera con id %d no existe", id));
+            return ResponseEntity.badRequest().body(mensaje);
+        }
+        Carrera carrera = oCarrera.get();
+        mensaje.put("datos", carrera);
+        mensaje.put("success", Boolean.TRUE);
+        return new ResponseEntity<>(mensaje);
+    }*/
 
     @PostMapping
     public ResponseEntity<?> altaCarrera(@Valid @RequestBody Carrera carrera, BindingResult result){
@@ -63,9 +78,21 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
             mensaje.put("mensaje", String.format("%s con ID %d no existe", nombreEntidad, id));
             return ResponseEntity.badRequest().body(mensaje);
         }
+        if (carrera.getCantidadAnios()<0){
+            //throw new BadRequestException("El campo de años no puede ser negativo");
+            mensaje.put("success",Boolean.FALSE);
+            mensaje.put("mensaje","El campo de años no puede ser negativo");
+            return ResponseEntity.badRequest().body(mensaje);
+        }
+        if (carrera.getCantidadMaterias()<0){
+            //throw new BadRequestException("El campo de cantidad de materias no puede ser negativo");
+            mensaje.put("success",Boolean.FALSE);
+            mensaje.put("mensaje","El campo de cantidad de materias no puede ser negativo");
+            return ResponseEntity.badRequest().body(mensaje);
+        }
         carreraUpdate = oCarrera.get();
         carreraUpdate.setCantidadAnios(carrera.getCantidadAnios());
-        carreraUpdate.setCantidaMaterias(carrera.getCantidaMaterias());
+        carreraUpdate.setCantidaMaterias(carrera.getCantidadMaterias());
         mensaje.put("datos", service.save(carreraUpdate));
         mensaje.put("succes", Boolean.TRUE);
         return ResponseEntity.ok(mensaje);

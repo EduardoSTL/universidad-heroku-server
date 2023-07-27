@@ -65,7 +65,7 @@ public class Carrera implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getCantidaMaterias() {
+    public Integer getCantidadMaterias() {
         return cantidaMaterias;
     }
 
