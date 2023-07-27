@@ -1,7 +1,6 @@
 
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
-import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Alumno;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Carrera;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Persona;
@@ -31,28 +30,41 @@ public class AlumnoController extends PersonaController{
         this.carreraDAO = carreraDAO;
     }
 
-    /*@GetMapping
-    public List<Persona> obtenerTodos(){
+    @GetMapping
+    public ResponseEntity<?> obtenerTodos(){
+        Map<String, Object> mensaje = new HashMap<>();
         List<Persona> alumnos = (List<Persona>) service.findAll();
         if(alumnos.isEmpty()){
-            throw new BadRequestException("No existe alumnos");
+            mensaje.put("success", Boolean.FALSE);
+            mensaje.put("message", "No existen alumnos");
+            return ResponseEntity.badRequest().body(mensaje);
         }
-        return alumnos;
+        mensaje.put("datos", alumnos);
+        mensaje.put("success", Boolean.TRUE);
+        return ResponseEntity.ok(mensaje  + "\tAlumnos: " + alumnos);
     }
 
     @GetMapping("/{id}")
-    public Persona obtenerAlumnoPorId(@PathVariable(required = false) Integer id){
-        Optional<Persona> oAlumno = alumnoDao.findById(id);
+    public ResponseEntity<?> obtenerAlumnoPorId(@PathVariable(required = false) Integer id){
+        Map<String, Object> mensaje = new HashMap<>();
+        Persona alumnoId = null;
+        Optional<Persona> oAlumno = service.findById(id);
         if(!oAlumno.isPresent()) {
-            throw new BadRequestException(String.format("Alumno con id %d no existe", id));
+            //throw new BadRequestException(String.format("Alumno con id %d no existe", id));
+            mensaje.put("success", Boolean.FALSE);
+            mensaje.put("message", String.format("Alumno con id %d no existe", id));
+            return ResponseEntity.badRequest().body(mensaje);
         }
-        return oAlumno.get();
+        alumnoId = oAlumno.get();
+        mensaje.put("datos", service.save(alumnoId));
+        mensaje.put("succes", Boolean.TRUE);
+        return ResponseEntity.ok(mensaje);
     }
 
     @PostMapping
     public Persona altaAlumno(@RequestBody Persona alumno){
-        return alumnoDao.save(alumno);
-    }*/
+        return service.save(alumno);
+    }
 
     //ResponseEntity
     @PutMapping("/{id}")
@@ -63,7 +75,7 @@ public class AlumnoController extends PersonaController{
         if(!oAlumno.isPresent()) {
             //throw new BadRequestException(String.format("Alumno con id %d no existe", id));
             mensaje.put("succes", Boolean.FALSE);
-            mensaje.put("succes", String.format("Alumno con id %d no existe", id));
+            mensaje.put("message", String.format("Alumno con id %d no existe", id));
             return ResponseEntity.badRequest().body(mensaje);
         }
         alumnoUpdate = oAlumno.get();
@@ -81,10 +93,10 @@ public class AlumnoController extends PersonaController{
         return ((AlumnoDAO)service).buscarAlumnosPorNombreCarrera(nombre);
     }
 
-    /*@DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void eliminarAlumno(@PathVariable Integer id){
-        alumnoDao.deleteById(id);
-    }*/
+        service.deleteById(id);
+    }
 
 
     @PutMapping("/{idAlumno}/carrera/{idCarrera}")
@@ -94,7 +106,7 @@ public class AlumnoController extends PersonaController{
         if(!oAlumno.isPresent()) {
             //throw new BadRequestException(String.format("Alumno con id %d no existe", idAlumno));
             mensaje.put("succes", Boolean.FALSE);
-            mensaje.put("succes", String.format("Alumno con id %d no existe", idAlumno));
+            mensaje.put("message", String.format("Alumno con id %d no existe", idAlumno));
             return ResponseEntity.badRequest().body(mensaje);
         }
 
@@ -102,7 +114,7 @@ public class AlumnoController extends PersonaController{
         if(!oCarrera.isPresent()){
             //throw new BadRequestException(String.format("Carrera con id %d no existe", idCarrera));
             mensaje.put("succes", Boolean.FALSE);
-            mensaje.put("succes", String.format("Carrera con id %d no existe", idCarrera));
+            mensaje.put("message", String.format("Carrera con id %d no existe", idCarrera));
             return ResponseEntity.badRequest().body(mensaje);
         }
 
