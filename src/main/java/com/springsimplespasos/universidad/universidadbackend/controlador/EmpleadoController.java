@@ -51,4 +51,3 @@ public class EmpleadoController extends PersonaController{
         return ResponseEntity.ok(mensaje);
     }
 }
-
