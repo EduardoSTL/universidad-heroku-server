@@ -8,11 +8,14 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.en
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.EmpleadoDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PersonaDAO;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class EmpleadoController extends PersonaController{
@@ -27,11 +30,15 @@ public class EmpleadoController extends PersonaController{
     }
 
     @PutMapping("/{id}")
-    public Persona actualizarEmpleado(@PathVariable Integer id, @RequestBody Empleado empleado){
+    public ResponseEntity<?> actualizarEmpleado(@PathVariable Integer id, @RequestBody Empleado empleado){
+        Map<String, Object> mensaje = new HashMap<>();
         Empleado empleadoUpdate;
         Optional<Persona> oEmpleado = service.findById(id);
         if(!oEmpleado.isPresent()) {
-            throw new BadRequestException(String.format("Empleado con id %d no existe", id));
+            //throw new BadRequestException(String.format("Empleado con id %d no existe", id));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("Empleado con id %d no existe", id));
+            return ResponseEntity.badRequest().body(mensaje);
         }
         empleadoUpdate = (Empleado) oEmpleado.get();
         empleadoUpdate.setNombre(empleado.getNombre());
@@ -39,7 +46,9 @@ public class EmpleadoController extends PersonaController{
         empleadoUpdate.setDireccion(empleado.getDireccion());
         empleadoUpdate.setTipoEmpleado(empleado.getTipoEmpleado());
         empleadoUpdate.setSueldo(empleado.getSueldo());
-        return service.save(empleadoUpdate);
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("datos", service.save(empleadoUpdate));
+        return ResponseEntity.ok(mensaje);
     }
 }
 
