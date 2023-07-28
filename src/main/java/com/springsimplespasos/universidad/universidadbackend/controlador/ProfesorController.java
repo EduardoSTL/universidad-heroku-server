@@ -8,15 +8,15 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Pr
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.CarreraDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PersonaDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.ProfesorDAO;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class ProfesorController extends PersonaController{
     private final CarreraDAO carreraDAO;
@@ -32,36 +32,51 @@ public class ProfesorController extends PersonaController{
     }
 
     @PutMapping("/{idProfesor}/carrera/{idCarrera}")
-    public Persona asignarCarreraProfesor(@PathVariable Integer idProfesor, @PathVariable Integer idCarrera){
+    public ResponseEntity<?> asignarCarreraProfesor(@PathVariable Integer idProfesor, @PathVariable Integer idCarrera){
+        Map<String, Object> mensaje = new HashMap<>();
         Optional<Persona> oProfesor = service.findById(idProfesor);
         if(!oProfesor.isPresent()) {
-            throw new BadRequestException(String.format("Profesor con id %d no existe", idProfesor));
+            //throw new BadRequestException(String.format("Profesor con id %d no existe", idProfesor));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("Profesor con id %d no existe", idProfesor));
+            return ResponseEntity.badRequest().body(mensaje);
         }
         Optional<Carrera> oCarrera = carreraDAO.findById(idCarrera);
         if(!oCarrera.isPresent()){
-            throw new BadRequestException(String.format("Carrera con id %d no existe", idCarrera));
+            //throw new BadRequestException(String.format("Carrera con id %d no existe", idCarrera));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("Carrera con id %d no existe", idCarrera));
+            return ResponseEntity.badRequest().body(mensaje);
         }
         Persona profesor = oProfesor.get();
         Carrera carrera = oCarrera.get();
         Set<Carrera> carreras = new HashSet<>();
         carreras.add(carrera);
         ((Profesor)profesor).setCarreras(carreras);
-        return service.save(profesor);
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("datos1", service.save(profesor));
+        return ResponseEntity.ok(mensaje);
     }
 
     @PutMapping("/{id}")
-    public Persona actualizarProfesor(@PathVariable Integer id, @RequestBody Profesor profesor){
-        Profesor profesorUpdate = null;
+    public ResponseEntity<?> actualizarProfesor(@PathVariable Integer id, @RequestBody Profesor profesor){
+        Map<String, Object> mensaje = new HashMap<>();
+        Profesor profesorUpdate;
         Optional<Persona> oProfesor = service.findById(id);
         if(!oProfesor.isPresent()) {
-            throw new BadRequestException(String.format("Profesor con id %d no existe", id));
+            //throw new BadRequestException(String.format("Profesor con id %d no existe", id));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("Profesor con id %d no existe", id));
+            return ResponseEntity.badRequest().body(mensaje);
         }
         profesorUpdate = (Profesor) oProfesor.get();
         profesorUpdate.setNombre(profesor.getNombre());
         profesorUpdate.setApellido(profesor.getApellido());
         profesorUpdate.setDireccion(profesor.getDireccion());
         profesorUpdate.setSueldo(profesor.getSueldo());
-        return service.save(profesorUpdate);
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("datos", service.save(profesorUpdate));
+        return ResponseEntity.ok(mensaje);
     }
 }
 
