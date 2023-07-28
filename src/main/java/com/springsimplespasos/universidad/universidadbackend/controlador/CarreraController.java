@@ -24,20 +24,11 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         nombreEntidad = "Carrera";
     }
 
-    @GetMapping("/{codigo}")
-    public Carrera obtenerPorId(@PathVariable(value = "codigo", required = false) Integer id) {
-        Optional<Carrera> oCarrera = service.findById(id);
-        if(!oCarrera.isPresent()){
-            throw new BadRequestException(String.format("La carrera con id %d no existe", id));
-        }
-        return oCarrera.get();
-    }
     //ignore:
-    /*@GetMapping("/{codigo}")
+    @GetMapping("/{codigo}")
     public ResponseEntity<?> obtenerPorId(@PathVariable(value = "codigo", required = false) Integer id) {
         Map<String, Object> mensaje = new HashMap<>();
         Optional<Carrera> oCarrera = service.findById(id);
-
         if (!oCarrera.isPresent()) {
             mensaje.put("success", Boolean.FALSE);
             mensaje.put("message", String.format("La carrera con id %d no existe", id));
@@ -46,8 +37,8 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         Carrera carrera = oCarrera.get();
         mensaje.put("datos", carrera);
         mensaje.put("success", Boolean.TRUE);
-        return new ResponseEntity<>(mensaje);
-    }*/
+        return ResponseEntity.ok(mensaje);
+    }
 
     @PostMapping
     public ResponseEntity<?> altaCarrera(@Valid @RequestBody Carrera carrera, BindingResult result){
