@@ -34,11 +34,17 @@ public class PersonaController extends GenericController<Persona, PersonaDAO> {
     }
 
     @GetMapping("/persona-dni")
-    public Persona buscarPorDni(@RequestParam String dni){
+    public ResponseEntity<?> buscarPorDni(@RequestParam String dni){
+        Map<String, Object> mensaje = new HashMap<>();
         Optional<Persona>personaOptional =service.buscarPorDni(dni);
         if (!personaOptional.isPresent()){
-            throw new BadRequestException(String.format("No se encontro persona con DNI " + "%s",dni));
+            //throw new BadRequestException(String.format("No se encontro persona con DNI " + "%s",dni));
+            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("mensaje", String.format("No se encontro persona con DNI " + "%s", dni));
+            return ResponseEntity.badRequest().body(mensaje);
         }
-        return personaOptional.get();
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("datos", personaOptional);
+        return ResponseEntity.ok(mensaje);
     }
 }
