@@ -40,14 +40,14 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         return ResponseEntity.ok(mensaje);
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<?> altaCarrera(@Valid @RequestBody Carrera carrera, BindingResult result){
-        /*if(carrera.getCantidadAnios() < 0) {
+        *//*if(carrera.getCantidadAnios() < 0) {
             throw new BadRequestException("El campo cantida de años no puede ser negativo");
         }
         if(carrera.getCantidaMaterias() < 0) {
             throw new BadRequestException("El campo cantida de materias no puede ser negativo");
-        }*/
+        }*//*
         Map<String, Object> validaciones = new HashMap<>();
         if (result.hasErrors()){
             result.getFieldErrors()
@@ -55,7 +55,7 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
             return ResponseEntity.badRequest().body(validaciones);
         }
         return ResponseEntity.ok(service.save(carrera));
-    }
+    }*/
 
     //ResponseEntity
     @PutMapping("/{id}")
@@ -90,7 +90,7 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarCarrera(@PathVariable Integer id) {
+    public void borrarPorId(@PathVariable Integer id) {
         service.deleteById(id);
     }
 

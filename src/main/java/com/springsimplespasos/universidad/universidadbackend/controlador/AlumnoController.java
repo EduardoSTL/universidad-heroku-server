@@ -30,7 +30,7 @@ public class AlumnoController extends PersonaController{
         this.carreraDAO = carreraDAO;
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<?> obtenerTodos(){
         Map<String, Object> mensaje = new HashMap<>();
         List<Persona> alumnos = (List<Persona>) service.findAll();
@@ -42,9 +42,9 @@ public class AlumnoController extends PersonaController{
         mensaje.put("datos", alumnos);
         mensaje.put("success", Boolean.TRUE);
         return ResponseEntity.ok(mensaje  + "\tAlumnos: " + alumnos);
-    }
+    }*/
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public ResponseEntity<?> obtenerAlumnoPorId(@PathVariable(required = false) Integer id){
         Map<String, Object> mensaje = new HashMap<>();
         Persona alumnoId = null;
@@ -59,12 +59,12 @@ public class AlumnoController extends PersonaController{
         mensaje.put("datos", service.save(alumnoId));
         mensaje.put("succes", Boolean.TRUE);
         return ResponseEntity.ok(mensaje);
-    }
+    }*/
 
-    @PostMapping
+    /*@PostMapping
     public Persona altaAlumno(@RequestBody Persona alumno){
         return service.save(alumno);
-    }
+    }*/
 
     //ResponseEntity
     @PutMapping("/{id}")
@@ -93,10 +93,10 @@ public class AlumnoController extends PersonaController{
         return ((AlumnoDAO)service).buscarAlumnosPorNombreCarrera(nombre);
     }
 
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public void eliminarAlumno(@PathVariable Integer id){
         service.deleteById(id);
-    }
+    }*/
 
 
     @PutMapping("/{idAlumno}/carrera/{idCarrera}")
