@@ -1,8 +1,6 @@
 package com.springsimplespasos.universidad.universidadbackend;
 
-import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.*;
-import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.Pizarron;
-import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.TipoEmpleado;
+
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.AlumnoDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.ProfesorDAO;
 import org.springframework.beans.factory.annotation.Autowired;
