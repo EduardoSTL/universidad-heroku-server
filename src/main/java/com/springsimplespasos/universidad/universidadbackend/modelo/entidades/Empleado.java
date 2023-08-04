@@ -3,16 +3,21 @@ package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.TipoEmpleado;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.math.BigDecimal;
 
 @Entity
+@Data
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "empleados")
 @PrimaryKeyJoinColumn(name = "persona_id")
 public class Empleado extends Persona {
 
     private BigDecimal sueldo;
-    @Column(name = "tipo_empleado")
     @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_empleado")
     private TipoEmpleado tipoEmpleado;
     @OneToOne(
             optional = true,
@@ -31,30 +36,6 @@ public class Empleado extends Persona {
         super(id, nombre, apellido, dni, direccion);
         this.sueldo = sueldo;
         this.tipoEmpleado = tipoEmpleado;
-    }
-
-    public BigDecimal getSueldo() {
-        return sueldo;
-    }
-
-    public void setSueldo(BigDecimal sueldo) {
-        this.sueldo = sueldo;
-    }
-
-    public TipoEmpleado getTipoEmpleado() {
-        return tipoEmpleado;
-    }
-
-    public void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
-    }
-
-    public Pabellon getPabellon() {
-        return pabellon;
-    }
-
-    public void setPabellon(Pabellon pabellon) {
-        this.pabellon = pabellon;
     }
 
     @Override

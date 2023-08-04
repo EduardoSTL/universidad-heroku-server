@@ -3,12 +3,16 @@ package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.Pizarron;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Data
+@Builder
 @Table(name = "aulas")
 public class Aula implements Serializable {
 
@@ -50,69 +54,6 @@ public class Aula implements Serializable {
         this.pizarron = pizarron;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getNroAula() {
-        return nroAula;
-    }
-
-    public void setNroAula(Integer nroAula) {
-        this.nroAula = nroAula;
-    }
-
-    public String getMedidas() {
-        return medidas;
-    }
-
-    public void setMedidas(String medidas) {
-        this.medidas = medidas;
-    }
-
-    public Integer getCantidadPupitres() {
-        return cantidadPupitres;
-    }
-
-    public void setCantidadPupitres(Integer cantidadPupitres) {
-        this.cantidadPupitres = cantidadPupitres;
-    }
-
-    public Pizarron getPizarron() {
-        return pizarron;
-    }
-
-    public void setPizarron(Pizarron pizarron) {
-        this.pizarron = pizarron;
-    }
-
-    public LocalDateTime getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(LocalDateTime fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
-    public LocalDateTime getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(LocalDateTime fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
-    public Pabellon getPabellon() {
-        return pabellon;
-    }
-
-    public void setPabellon(Pabellon pabellon) {
-        this.pabellon = pabellon;
-    }
 
     @PrePersist
     private void antesDePersistir(){

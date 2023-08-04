@@ -3,22 +3,39 @@ package com.springsimplespasos.universidad.universidadbackend.modelo.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
+@Builder
 @Table(name = "carreras")
 public class Carrera implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull
+    @NotEmpty
+    @Size
     @Column(nullable = false, unique = true, length = 80)
     private String nombre;
+
+    @Positive(message = "El valor no puede ser negativo")
     @Column(name = "cantidad_materias")
     private Integer cantidaMaterias;
+
+    @Positive(message = "Cantidad Años")
     @Column(name = "cantidad_anios")
     private Integer cantidadAnios;
     @Column(name = "fecha_alta")
@@ -47,70 +64,6 @@ public class Carrera implements Serializable {
         this.nombre = nombre;
         this.cantidaMaterias = cantidaMaterias;
         this.cantidadAnios = cantidadAnios;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getCantidadMaterias() {
-        return cantidaMaterias;
-    }
-
-    public void setCantidaMaterias(Integer cantidaMaterias) {
-        this.cantidaMaterias = cantidaMaterias;
-    }
-
-    public Integer getCantidadAnios() {
-        return cantidadAnios;
-    }
-
-    public void setCantidadAnios(Integer cantidadAnios) {
-        this.cantidadAnios = cantidadAnios;
-    }
-
-    public LocalDateTime getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(LocalDateTime fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
-    public LocalDateTime getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(LocalDateTime fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
-    public Set<Alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    public void setAlumnos(Set<Alumno> alumnos) {
-        this.alumnos = alumnos;
-    }
-
-    public Set<Profesor> getProfesores() {
-        return profesores;
-    }
-
-    public void setProfesores(Set<Profesor> profesores) {
-        this.profesores = profesores;
     }
 
     @PrePersist
