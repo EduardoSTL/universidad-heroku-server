@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", config = AlumnoMapperConfig.class, uses = CarreraMapperMS.class)
 public interface AlumnoMapper {
     //fixed to interface
-    abstract AlumnoDTO mapAlumno(Alumno alumno);
-    abstract Alumno mapAlumno(AlumnoDTO alumnoDTO);
+    AlumnoDTO mapAlumno(Alumno alumno);
+    Alumno mapAlumno(AlumnoDTO alumnoDTO);
 }

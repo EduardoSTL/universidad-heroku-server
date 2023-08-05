@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", config = ProfesorMapperConfig.class)
 public interface ProfesorMapper {
-    ProfesorDTO mapProfesorDTO(Profesor profesor);
-    Profesor mapProfesor(ProfesorDTO profesorDTO);
+    ProfesorDTO mapProfesor(Profesor profesor);
+    Profesor mapProfesorDTO(ProfesorDTO profesorDTO);
 }

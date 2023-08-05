@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", config = EmpleadoMapperConfig.class)
 public interface EmpleadoMapper {
-    EmpleadoDTO mapEmpleadoDTO(Empleado empleado);
+    EmpleadoDTO mapEmpleado(Empleado empleado);
 
     Empleado mapEmpleadoDTO(EmpleadoDTO empleadoDTO);
 }
