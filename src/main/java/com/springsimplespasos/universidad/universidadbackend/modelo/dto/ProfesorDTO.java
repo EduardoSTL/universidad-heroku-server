@@ -10,15 +10,10 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ProfesorDTO extends PersonaDTO{
     private BigDecimal sueldo;
     private Set<CarreraDTO> carreraDTO;
-
-    public ProfesorDTO(Integer id, String nombre, String apellido, String dni, Direccion direccion, BigDecimal sueldo) {
-        super(id, nombre, apellido, dni, direccion);
-        this.sueldo = sueldo;
-    }
 }

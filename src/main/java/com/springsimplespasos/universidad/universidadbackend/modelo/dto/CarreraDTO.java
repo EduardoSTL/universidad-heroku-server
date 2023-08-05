@@ -24,6 +24,4 @@ public class CarreraDTO {
     private Integer cantidad_materias;
     @Positive
     private Integer cantidad_anios;
-
-
 }

@@ -4,12 +4,9 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Di
 import lombok.*;
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class AlumnoDTO extends PersonaDTO{
 
     private CarreraDTO carreraDTO;
-
-    public AlumnoDTO(Integer id, String nombre, String apellido, String dni, Direccion direccion) {
-        super(id, nombre, apellido, dni, direccion);
-    }
 }

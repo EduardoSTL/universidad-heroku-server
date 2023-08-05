@@ -29,4 +29,8 @@ public class GenericDtoController <E, S extends GenericoDAO<E>> {
         result.getFieldErrors().forEach(error -> validaciones.put(error.getField(), error.getDefaultMessage()));
         return validaciones;
     }
+
+    public void deleteById(Integer id){
+        service.deleteById(id);
+    }
 }
