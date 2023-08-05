@@ -8,16 +8,18 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.en
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.EmpleadoDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PersonaDAO;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Deprecated
+@RestController
+@RequestMapping("/empleados")
+@ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "false")
 public class EmpleadoController extends PersonaController{
     public EmpleadoController(@Qualifier("empleadoDAOImpl") PersonaDAO service) {
         super(service);

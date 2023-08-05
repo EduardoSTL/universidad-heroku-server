@@ -1,19 +1,17 @@
 
 package com.springsimplespasos.universidad.universidadbackend.controlador;
 
-import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Carrera;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.CarreraDAO;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Deprecated
 @RestController
 @RequestMapping("/carreras")
 public class CarreraController extends GenericController<Carrera, CarreraDAO>{
@@ -83,7 +81,7 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
         }
         carreraUpdate = oCarrera.get();
         carreraUpdate.setCantidadAnios(carrera.getCantidadAnios());
-        carreraUpdate.setCantidaMaterias(carrera.getCantidadMaterias());
+        carreraUpdate.setCantidadMaterias(carrera.getCantidadMaterias());
         mensaje.put("datos", service.save(carreraUpdate));
         mensaje.put("succes", Boolean.TRUE);
         return ResponseEntity.ok(mensaje);

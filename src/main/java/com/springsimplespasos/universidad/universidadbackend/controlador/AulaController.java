@@ -7,6 +7,7 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Pa
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.Pizarron;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.AulaDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PabellonDAO;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Deprecated
 @RestController
 @RequestMapping("/aulas")
+@ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "false")
 public class AulaController extends GenericController<Aula, AulaDAO>{
 
     private final PabellonDAO pabellonDAO;

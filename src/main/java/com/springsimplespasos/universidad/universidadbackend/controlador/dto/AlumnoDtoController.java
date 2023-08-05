@@ -4,6 +4,8 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.dto.AlumnoDT
 import com.springsimplespasos.universidad.universidadbackend.modelo.dto.PersonaDTO;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Alumno;
 import com.springsimplespasos.universidad.universidadbackend.modelo.mapper.mapstruck.AlumnoMapper;
+import com.springsimplespasos.universidad.universidadbackend.modelo.mapper.mapstruck.CarreraMapperMS;
+import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.CarreraDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PersonaDAO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +32,13 @@ import java.util.Map;
 @Tag(name = "alumnos", description = "Registro de alumnos")
 public class AlumnoDtoController extends PersonaDtoController{
 
-    public AlumnoDtoController(PersonaDAO service, AlumnoMapper alumnoMapper){
+    private final CarreraDAO carreraDAO;
+    private final CarreraMapperMS carreraMapperMS;
+
+    public AlumnoDtoController(@Qualifier("alumnoDAOImpl") PersonaDAO service, AlumnoMapper alumnoMapper, CarreraDAO carreraDAO, CarreraMapperMS carreraMapperMS){
         super(service, "Alumno", alumnoMapper);
+        this.carreraDAO = carreraDAO;
+        this.carreraMapperMS = carreraMapperMS;
     }
 
     @Operation(summary = "Get ALUMNO by ID")

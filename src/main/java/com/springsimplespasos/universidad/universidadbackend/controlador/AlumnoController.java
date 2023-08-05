@@ -9,6 +9,8 @@ import com.springsimplespasos.universidad.universidadbackend.servicios.contratos
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PersonaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Deprecated
 @RestController
+@ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "false")
 @RequestMapping("/alumnos")
 public class AlumnoController extends PersonaController{
 
@@ -70,7 +74,7 @@ public class AlumnoController extends PersonaController{
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarAlumno(@PathVariable Integer id, @RequestBody Persona alumno){
         Map<String, Object> mensaje = new HashMap<>();
-        Persona alumnoUpdate = null;
+        Alumno alumnoUpdate = null;
         Optional<Persona> oAlumno = service.findById(id);
         if(!oAlumno.isPresent()) {
             //throw new BadRequestException(String.format("Alumno con id %d no existe", id));
@@ -78,13 +82,13 @@ public class AlumnoController extends PersonaController{
             mensaje.put("message", String.format("Alumno con id %d no existe", id));
             return ResponseEntity.badRequest().body(mensaje);
         }
-        alumnoUpdate = oAlumno.get();
+        alumnoUpdate = (Alumno) oAlumno.get();
         alumnoUpdate.setNombre(alumno.getNombre());
         alumnoUpdate.setApellido(alumno.getApellido());
         alumnoUpdate.setDireccion(alumno.getDireccion());
         mensaje.put("datos", service.save(alumnoUpdate));
-        mensaje.put("succes", Boolean.TRUE);
-        return ResponseEntity.ok(mensaje);
+        mensaje.put("success", Boolean.TRUE);
+        return ResponseEntity.ok().body(mensaje);
     }
 
 
@@ -113,7 +117,7 @@ public class AlumnoController extends PersonaController{
         Optional<Carrera> oCarrera = carreraDAO.findById(idCarrera);
         if(!oCarrera.isPresent()){
             //throw new BadRequestException(String.format("Carrera con id %d no existe", idCarrera));
-            mensaje.put("succes", Boolean.FALSE);
+            mensaje.put("success", Boolean.FALSE);
             mensaje.put("message", String.format("Carrera con id %d no existe", idCarrera));
             return ResponseEntity.badRequest().body(mensaje);
         }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@Deprecated
 public class GenericController <E, S extends GenericoDAO<E>> {
 
     protected final S service;

@@ -4,13 +4,17 @@ package com.springsimplespasos.universidad.universidadbackend.controlador;
 import com.springsimplespasos.universidad.universidadbackend.exception.BadRequestException;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Pabellon;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PabellonDAO;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
+@Deprecated
+@RestController
+@RequestMapping("/pabellones")
+@ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "false")
 public class PabellonController extends GenericController<Pabellon, PabellonDAO>{
 
     public PabellonController(PabellonDAO service) {

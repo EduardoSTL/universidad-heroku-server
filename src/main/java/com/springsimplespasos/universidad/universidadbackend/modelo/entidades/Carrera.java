@@ -33,7 +33,7 @@ public class Carrera implements Serializable {
 
     @Positive(message = "El valor no puede ser negativo")
     @Column(name = "cantidad_materias")
-    private Integer cantidaMaterias;
+    private Integer cantidadMaterias;
 
     @Positive(message = "Cantidad Años")
     @Column(name = "cantidad_anios")
@@ -59,10 +59,10 @@ public class Carrera implements Serializable {
     public Carrera() {
     }
 
-    public Carrera(Integer id, String nombre, Integer cantidaMaterias, Integer cantidadAnios) {
+    public Carrera(Integer id, String nombre, Integer cantidadMaterias, Integer cantidadAnios) {
         this.id = id;
         this.nombre = nombre;
-        this.cantidaMaterias = cantidaMaterias;
+        this.cantidadMaterias = cantidadMaterias;
         this.cantidadAnios = cantidadAnios;
     }
 
@@ -81,7 +81,7 @@ public class Carrera implements Serializable {
         return "Carrera{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", cantidaMaterias=" + cantidaMaterias +
+                ", cantidaMaterias=" + cantidadMaterias +
                 ", cantidadAnios=" + cantidadAnios +
                 ", fechaAlta=" + fechaAlta +
                 ", fechaModificacion=" + fechaModificacion +
