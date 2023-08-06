@@ -43,12 +43,12 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     public ResponseEntity<?> findAllAulas(){
         Map<String, Object> mensaje = new HashMap<>();
         List<Aula> aulas = super.obtenerTodos();
-        List<AulaDTO> dtos = aulas.stream()
+        List<AulaDTO> save = aulas.stream()
                 .map(aula -> aulaMapper.mapAula(aula))
                 .collect(Collectors.toList());
 
         mensaje.put("succes", Boolean.TRUE);
-        mensaje.put("data", dtos);
+        mensaje.put("data", save);
         return ResponseEntity.ok().body(mensaje);
     }
 
@@ -62,7 +62,7 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         Map<String, Object> mensaje = new HashMap<>();
         Optional<Aula> optionalAula= super.obtenerPorId(id);
         Aula aula;
-        AulaDTO dto;
+        AulaDTO save;
 
         if (optionalAula == null || optionalAula.isEmpty()) {
             mensaje.put("succes", Boolean.FALSE);
@@ -71,10 +71,10 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         }else {
             aula = optionalAula.get();
         }
-        dto = aulaMapper.mapAula(aula);
+        save = aulaMapper.mapAula(aula);
 
         mensaje.put("succes", Boolean.TRUE);
-        mensaje.put("data", dto);
+        mensaje.put("data", save);
         return ResponseEntity.ok().body(mensaje);
     }
 
@@ -98,7 +98,7 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarAula(@PathVariable Integer id,
+    public ResponseEntity<?> updateAula(@PathVariable Integer id,
                                             @Valid @RequestBody AulaDTO aulaDTO,BindingResult result){
 
         Map<String,Object> mensaje = new HashMap<>();
@@ -183,7 +183,7 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         Map<String,Object> mensaje = new HashMap<>();
         Optional<Aula> optionalAula = service.findAulaByNroAula(nroAula);
         Aula aula;
-        AulaDTO dto;
+        AulaDTO save;
 
         if(optionalAula == null || optionalAula.isEmpty()) {
             mensaje.put("success", Boolean.FALSE);
@@ -192,10 +192,10 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         }else {
             aula = optionalAula.get();
         }
-        dto = aulaMapper.mapAula(aula);
+        save = aulaMapper.mapAula(aula);
 
         mensaje.put("success",Boolean.TRUE);
-        mensaje.put("data",dto);
+        mensaje.put("data",save);
         return ResponseEntity.ok().body(mensaje);
     }
 
@@ -219,14 +219,11 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
             mensaje.put("mensaje",String.format("%s con id %d no existe",nombre_entidad, idAula));
             return ResponseEntity.badRequest().body(mensaje);
         }
-
         pabellon = oPabellon.get();
         aula = optionalAula.get();
         aula.setPabellon(pabellon);
-
         mensaje.put("success",Boolean.TRUE);
         mensaje.put("data",super.altaEntidad(aula));
         return ResponseEntity.ok().body(mensaje);
     }
-
 }

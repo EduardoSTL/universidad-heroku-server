@@ -17,14 +17,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Conditional;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,7 +36,7 @@ public class CarreraDtoController {
     @Autowired
     private CarreraDAO carreraDAO;
     @Autowired
-    private CarreraMapperMS mapper;
+    CarreraMapperMS mapper;
 
     @Operation(summary = "Get ALL CARERRAS")
     @ApiResponses(value = {
@@ -49,7 +49,7 @@ public class CarreraDtoController {
     })
 
     @GetMapping
-    public ResponseEntity<?> obtenerTodos(){
+    public ResponseEntity<?> findAllCarreras(){
         Map<String, Object> mensaje = new HashMap<>();
         List<Carrera> carreras =(List<Carrera>) carreraDAO.findAll();
         List<CarreraDTO> carreraDTOS = carreras
@@ -59,5 +59,26 @@ public class CarreraDtoController {
         mensaje.put("success", Boolean.TRUE);
         mensaje.put("data", carreraDTOS);
         return ResponseEntity.ok(mensaje);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findCarrerasById(@PathVariable Integer id){
+        Map<String, Object> mensaje = new HashMap<>();
+        Optional<Carrera> carreras = carreraDAO.findById(id);
+        Carrera carrera = carreras.get();
+        CarreraDTO save = mapper.mapCarrera(carrera);
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("data", save);
+        return ResponseEntity.ok().body(mensaje);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> altaCarrera(@RequestBody CarreraDTO carreraDTO){
+        Map<String, Object> mensaje = new HashMap<>();
+        Carrera carrera = mapper.mapCarrera(carreraDTO);
+        carreraDAO.save(carrera);
+        mensaje.put("success", Boolean.TRUE);
+        mensaje.put("data", "");
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
     }
 }

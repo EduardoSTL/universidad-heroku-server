@@ -7,8 +7,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,6 +19,8 @@ import java.util.Set;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Table(name = "carreras")
 public class Carrera implements Serializable {
@@ -56,15 +60,6 @@ public class Carrera implements Serializable {
     @JsonIgnoreProperties({"carreras"})
     private Set<Profesor> profesores;
 
-    public Carrera() {
-    }
-
-    public Carrera(Integer id, String nombre, Integer cantidadMaterias, Integer cantidadAnios) {
-        this.id = id;
-        this.nombre = nombre;
-        this.cantidadMaterias = cantidadMaterias;
-        this.cantidadAnios = cantidadAnios;
-    }
 
     @PrePersist
     private void antesDePersistir(){

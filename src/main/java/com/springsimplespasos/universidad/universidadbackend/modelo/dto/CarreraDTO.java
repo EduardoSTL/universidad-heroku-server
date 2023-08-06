@@ -1,5 +1,6 @@
 package com.springsimplespasos.universidad.universidadbackend.modelo.dto;
 
+import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Carrera;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarreraDTO {
+public class CarreraDTO extends Carrera {
 
     private Integer codigo;
 
