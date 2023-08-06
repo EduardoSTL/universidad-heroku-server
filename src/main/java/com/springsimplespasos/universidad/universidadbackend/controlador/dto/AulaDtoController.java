@@ -1,6 +1,8 @@
 package com.springsimplespasos.universidad.universidadbackend.controlador.dto;
 
+import com.springsimplespasos.universidad.universidadbackend.modelo.builder.AulaDTOBuilder;
 import com.springsimplespasos.universidad.universidadbackend.modelo.dto.AulaDTO;
+import com.springsimplespasos.universidad.universidadbackend.modelo.dto.PabellonDTO;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Aula;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Pabellon;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.Pizarron;
@@ -37,6 +39,19 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         super(service, "aula");
         this.aulaMapper = aulaMapper;
         this.pabellonDAO = pabellonDAO;
+    }
+
+    @GetMapping("/aula")
+    public ResponseEntity<AulaDTO> obtenerAula() {
+        AulaDTO aulaDTO = new AulaDTOBuilder()
+                .withId()
+                .withNroAula()
+                .withMedidas("")
+                .withCantidadPupitres()
+                .withPizarron() // Configuración del enum Pizarron
+                .withPabellonDTO(new PabellonDTO())
+                .build();
+        return ResponseEntity.ok(aulaDTO);
     }
 
     @GetMapping
