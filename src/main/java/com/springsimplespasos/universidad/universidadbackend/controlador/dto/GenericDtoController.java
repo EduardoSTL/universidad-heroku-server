@@ -24,9 +24,9 @@ public class GenericDtoController <E, S extends GenericoDAO<E>> {
         return service.save(entidad);
     }
 
-    protected Map<String, Object> obtenerValidaciones(BindingResult result){
-        Map<String, Object> validaciones = new HashMap<>();
-        result.getFieldErrors().forEach(error -> validaciones.put(error.getField(), error.getDefaultMessage()));
+    protected Map<String,Object> obtenerValidaciones(BindingResult result){
+        Map<String,Object> validaciones = new HashMap<>();
+        result.getFieldErrors().forEach(error-> validaciones.put(error.getField(),error.getDefaultMessage()));
         return validaciones;
     }
 
