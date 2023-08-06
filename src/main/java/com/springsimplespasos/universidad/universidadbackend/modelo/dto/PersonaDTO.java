@@ -21,7 +21,7 @@ public abstract class PersonaDTO {
     private String nombre;
     private String apellido;
     @Pattern(regexp = "[0-9]+")
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 9)
     private String dni;
     private Direccion direccion;
 }

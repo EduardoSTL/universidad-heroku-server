@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class ObjetosDummy {
 
-    public static Aula getAula123(){
+    /*public static Aula getAula123(){
         return new Aula(null, 123, "24 x 36", 50, Pizarron.PIZARRA_BLANCA);
     }
 
@@ -58,5 +58,5 @@ public class ObjetosDummy {
     }
     public static Persona getEmpleadoDos(){
         return new Empleado(null, "Roberto", "Lugones", "28902674", new Direccion(), new BigDecimal("14250"), TipoEmpleado.MANTENIMIENTO);
-    }
+    }*/
 }
