@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/alumnos")
 @ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "true")
-@Tag(name = "alumnos", description = "Registro de alumnos")
+@Tag(name = "Alumnos", description = "Registro de alumnos")
 public class AlumnoDtoController extends PersonaDtoController{
 
     private final CarreraDAO carreraDAO;

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/carreras")
 @ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "true")
-@Tag(name = "carreras", description = "Registro de carreras")
+@Tag(name = "Carreras", description = "Registro de carreras")
 public class CarreraDtoController extends GenericDtoController<Carrera, CarreraDAO>{
 
     private final CarreraMapperMS carreraMapper;

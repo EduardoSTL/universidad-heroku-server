@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/aulas")
-@Tag(name = "aulas", description = "Registro de aulas")
+@Tag(name = "Aulas", description = "Registro de aulas")
 @ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "true")
 public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
