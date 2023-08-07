@@ -1,6 +1,5 @@
 package com.springsimplespasos.universidad.universidadbackend.controlador.dto;
 
-import com.springsimplespasos.universidad.universidadbackend.modelo.builder.AulaDTOBuilder;
 import com.springsimplespasos.universidad.universidadbackend.modelo.dto.AulaDTO;
 import com.springsimplespasos.universidad.universidadbackend.modelo.dto.PabellonDTO;
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Alumno;
@@ -9,7 +8,6 @@ import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.Pa
 import com.springsimplespasos.universidad.universidadbackend.modelo.entidades.enumeradores.Pizarron;
 import com.springsimplespasos.universidad.universidadbackend.modelo.mapper.mapstruck.AulaMapper;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.AulaDAO;
-import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.GenericoDAO;
 import com.springsimplespasos.universidad.universidadbackend.servicios.contratos.PabellonDAO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.*;
@@ -42,19 +40,6 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
         super(service, "aula");
         this.aulaMapper = aulaMapper;
         this.pabellonDAO = pabellonDAO;
-    }
-
-    @GetMapping("/aula")
-    public ResponseEntity<AulaDTO> obtenerAula() {
-        AulaDTO aulaDTO = new AulaDTOBuilder()
-                .withId()
-                .withNroAula()
-                .withMedidas("")
-                .withCantidadPupitres()
-                .withPizarron() // Configuración del enum Pizarron
-                .withPabellonDTO(new PabellonDTO())
-                .build();
-        return ResponseEntity.ok(aulaDTO);
     }
 
     @Operation(summary = "Buscar todos los registros de aula")

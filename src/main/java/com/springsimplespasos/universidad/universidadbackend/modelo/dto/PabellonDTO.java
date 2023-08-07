@@ -12,11 +12,8 @@ import java.util.Set;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class PabellonDTO {
     private Integer id;
-
     @NotNull
     @NotEmpty
     private String nombre;

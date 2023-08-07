@@ -51,7 +51,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
         Map<String, Object> mensaje = new HashMap<>();
         List<Pabellon> pabellones = super.obtenerTodos();
         List<PabellonDTO> dtos = pabellones.stream()
-                .map(pabellon -> pabellonMapper.mapPabellon(pabellon))
+                .map(pabellon -> pabellonMapper.mapPabellonToDTO(pabellon))
                 .collect(Collectors.toList());
         mensaje.put("succes", Boolean.TRUE);
         mensaje.put("data", dtos);
@@ -78,7 +78,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
         }else {
             pabellon = optionalPabellon.get();
         }
-        dto = pabellonMapper.mapPabellon(pabellon);
+        dto = pabellonMapper.mapPabellonToDTO(pabellon);
         mensaje.put("succes", Boolean.TRUE);
         mensaje.put("data", dto);
         return ResponseEntity.ok().body(mensaje);
@@ -99,7 +99,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
             mensaje.put("validaciones",super.obtenerValidaciones(result));
             return ResponseEntity.badRequest().body(mensaje);
         }
-        Pabellon pabellon = pabellonMapper.mapPabellon(pabellonDTO);
+        Pabellon pabellon = pabellonMapper.mapPabellonToEntity(pabellonDTO);
         mensaje.put("success",Boolean.TRUE);
         mensaje.put("data",super.altaEntidad(pabellon));
         return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
@@ -132,11 +132,11 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
         }else {
             pabellon = optionalPabellon.get();
         }
-        dto = pabellonMapper.mapPabellon(pabellon);
+        dto = pabellonMapper.mapPabellonToDTO(pabellon);
         dto.setNombre(pabellonDTO.getNombre());
         dto.setMts2(pabellonDTO.getMts2());
         dto.setDireccion(pabellonDTO.getDireccion());
-        pabellon = pabellonMapper.mapPabellon(dto);
+        pabellon = pabellonMapper.mapPabellonToEntity(dto);
         mensaje.put("success",Boolean.TRUE);
         mensaje.put("data",super.altaEntidad(pabellon));
         return ResponseEntity.ok().body(mensaje);
@@ -181,7 +181,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
             return ResponseEntity.badRequest().body(mensaje);
         }
         List<PabellonDTO> dtos = pabellones.stream()
-                .map(pabellonMapper::mapPabellon)
+                .map(pabellonMapper::mapPabellonToDTO)
                 .collect(Collectors.toList());
         mensaje.put("success",Boolean.TRUE);
         mensaje.put("data",dtos);
@@ -205,7 +205,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
             return ResponseEntity.badRequest().body(mensaje);
         }
         List<PabellonDTO> dtos = pabellones.stream()
-                .map(pabellonMapper::mapPabellon)
+                .map(pabellonMapper::mapPabellonToDTO)
                 .collect(Collectors.toList());
         mensaje.put("success",Boolean.TRUE);
         mensaje.put("data",dtos);

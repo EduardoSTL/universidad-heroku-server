@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AulaDTO {
     private Integer id;
+    private Pabellon pabellon;
+
     @NotNull
     private Integer nroAula;
     private String medidas;

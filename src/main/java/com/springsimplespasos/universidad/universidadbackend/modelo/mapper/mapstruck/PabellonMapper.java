@@ -9,12 +9,12 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface PabellonMapper {
-    PabellonDTO mapPabellon(Pabellon pabellon);
-    Pabellon mapPabellon(PabellonDTO pabellonDTO);
+    PabellonDTO mapPabellonToDTO(Pabellon pabellon);
+    Pabellon mapPabellonToEntity(PabellonDTO pabellonDTO);
 
     @Mapping(target = "pabellon", ignore = true)
     @Mapping(target = "medidas", ignore = true)
     @Mapping(target = "pizarron", ignore = true)
-    @Mapping(target = "cantPupitres", ignore = true)
+    @Mapping(target = "cantidadPupitres", source = "cantidad_pupitres")
     AulaDTO mapAula(Aula aula);
 }
