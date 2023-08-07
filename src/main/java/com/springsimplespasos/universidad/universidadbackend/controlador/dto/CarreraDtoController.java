@@ -62,9 +62,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Buscar registro por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro obtenido",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> findCarreraById(@PathVariable Integer id) {
@@ -89,9 +89,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Crear un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "se creo el registro de alumno",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @PostMapping
     public ResponseEntity<?> createCarrera( @Valid @RequestBody CarreraDTO carreraDTO,BindingResult result ) {
@@ -112,11 +112,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "422", description = "No se pudo actualizar el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con el id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCarrera(@PathVariable Integer id, @Valid @RequestBody CarreraDTO carreraDTO,BindingResult result){
@@ -149,9 +149,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Eliminar un registro ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "registro eliminado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCarrera(@PathVariable Integer id){
@@ -171,11 +171,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Buscar todos las carreras por nombre si contiene")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registros encontrados",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
-    @PostMapping("/find-carreras")
+    @GetMapping("/find-carreras")
     public ResponseEntity<?> findCarreraByNombreContains(@RequestParam String carrera){
         Map<String,Object> mensaje = new HashMap<>();
         List<Carrera> carreras = (List<Carrera>) service.findCarrerasByNombreContains(carrera);
@@ -195,11 +195,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Buscar todos las carreras por nombre ignorando")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registros encontrados",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe el registro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
-    @PostMapping("/find-carreras/ignorecase")
+    @GetMapping("/find-carreras/ignorecase")
     public ResponseEntity<?> findCarreraByNombreContainsIgnoreCase(@RequestParam String carrera){
         Map<String,Object> mensaje = new HashMap<>();
         List<Carrera> carreras = (List<Carrera>) service.findCarrerasByNombreContainsIgnoreCase(carrera);
@@ -219,11 +219,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Buscar todas las carreras por cantidad de años")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registros encontrados",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe el registro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
-    @PostMapping("/find-carreras/anios/{anios}")
+    @GetMapping("/find-carreras/anios/{anios}")
     public ResponseEntity<?> findCarreraByCantidadAniosAfter(@PathVariable Integer anios){
         Map<String,Object> mensaje = new HashMap<>();
         List<Carrera> carreras = (List<Carrera>) service.findCarrerasByCantidadAniosAfter(anios);
@@ -243,9 +243,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
     @Operation(summary = "Buscar todas las carreras por nombre y apellido del profesor")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registros encontrados",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
             @ApiResponse(responseCode = "400", description = "No existe el registro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("profesor-carreras/{nombre}/{apellido}")
     public ResponseEntity<Map<String, Object>> findCarrerasProfesorNombreApellido(@PathVariable String nombre, @PathVariable String apellido){
