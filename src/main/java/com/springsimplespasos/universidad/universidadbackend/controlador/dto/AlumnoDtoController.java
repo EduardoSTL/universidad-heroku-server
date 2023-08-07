@@ -85,7 +85,7 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Create ALUMNO")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "2XX", description = "registro de alumno",
+            @ApiResponse(responseCode = "2XX", description = "registro creado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
             @ApiResponse(responseCode = "4XX", description = "error al crear un nuevo alumno",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
@@ -115,7 +115,6 @@ public class AlumnoDtoController extends PersonaDtoController{
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
-
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarAlumno(@PathVariable Integer id, @Valid @RequestBody AlumnoDTO alumnoDTO,BindingResult result){
         Map<String,Object> mensaje = new HashMap<>();
@@ -146,7 +145,7 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Eliminar un registro por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se borro el registro ",
+            @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
