@@ -44,7 +44,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Obtiene todos los registros")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "todos los registros de alumnos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping
     public ResponseEntity<?> findAllPabellones(){
@@ -61,9 +61,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Buscar pabellon por id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> findPabellonById(@PathVariable Integer id) {
@@ -87,9 +87,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Crear un registro de pabellon")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "registro creado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "422", description = "Error al crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @PostMapping
     public ResponseEntity<?> createPabellon(@Valid @RequestBody PabellonDTO pabellonDTO, BindingResult result){
@@ -108,11 +108,11 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "422", description = "Error al actualizar el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarPabellon(@PathVariable Integer id, @Valid @RequestBody PabellonDTO pabellonDTO,BindingResult result){
@@ -145,9 +145,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Eliminar un registro por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePabellonById(@PathVariable Integer id){
@@ -167,11 +167,11 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Buscar registro por localidad")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con la localidad ingresada",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
-    @PostMapping("/pabellones-localidad")
+    @GetMapping("/pabellones-localidad")
     public ResponseEntity<?> findAllPabellonesByLocalidad(@RequestParam String localidad){
         Map<String,Object> mensaje = new HashMap<>();
         List<Pabellon> pabellones = (List<Pabellon>) service.findAllPabellonByLocalidad(localidad);
@@ -191,11 +191,11 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
     @Operation(summary = "Buscar pabellones por nombre")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con nombre",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
-    @PostMapping("/pabellones-nombre")
+    @GetMapping("/pabellones-nombre")
     public ResponseEntity<Map<String, Object>> findAllPabellonByNombre(@RequestParam String nombre){
         Map<String,Object> mensaje = new HashMap<>();
         List<Pabellon> pabellones = (List<Pabellon>) service.findAllPabellonByNombre(nombre);
