@@ -26,7 +26,7 @@ public class OpenApiConfig {
                 .info(new Info().title("Universidad API rest")
                         .description("Registros univerisdad")
                         .version("v2")
-                        .license(new License().name("Repository").url("https://github.com/EduardoSTL/universidad-backend"))
+                        .license(new License().name("GitHub Repository").url("https://github.com/EduardoSTL/universidad-backend-spring.git"))
                         .contact(new Contact()
                         .name("Eduardo Melgar")
                     .email("eduardojosemelgar2004@gmail.com"))
