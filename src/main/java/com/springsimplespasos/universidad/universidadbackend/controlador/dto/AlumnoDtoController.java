@@ -47,7 +47,7 @@ public class AlumnoDtoController extends PersonaDtoController{
         this.carreraMapperMS = carreraMapperMS;
     }
 
-    @Operation(summary = "Get ALL ALUMNOS")
+    @Operation(summary = "Obtener todos los registros")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "todos los registros de alumnos", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
