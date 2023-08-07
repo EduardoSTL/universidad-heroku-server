@@ -46,7 +46,7 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Obtener todos los profesores")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registros encontrados con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @GetMapping
     public ResponseEntity<?> findAllProfesores(){
@@ -60,9 +60,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar el registro por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> findProfesorById(@PathVariable Integer id) {
@@ -81,9 +81,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Crear un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "registro creado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "422", description = "Error al crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @PostMapping
     public ResponseEntity<?> createProfesor(@Valid @RequestBody PersonaDTO personaDTO, BindingResult result){
@@ -102,11 +102,11 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "422", description = "Error al actualizar el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con el id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> updateProfesor(@PathVariable Integer id, @Valid @RequestBody ProfesorDTO profesorDTO, BindingResult result){
@@ -139,9 +139,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Eliminar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProfesorById(@PathVariable Integer id){
@@ -161,9 +161,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar un registro por nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @GetMapping("/nombre-apellido/{nombre}/{apellido}")
     public ResponseEntity<?> findProfesorByNombreApellido(@PathVariable String nombre, @PathVariable String apellido){
@@ -182,9 +182,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar registro por DNI")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con DNI",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @GetMapping("/profesor-dni")
     public ResponseEntity<Map<String, Object>> findProfesorByDni(@RequestParam String dni){
@@ -203,9 +203,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar un registro por nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @GetMapping("/profesores-carreras")
     public ResponseEntity<?> findProfesoresCarrera(@RequestBody String carrera){
@@ -227,9 +227,9 @@ public class ProfesorDtoController extends PersonaDtoController {
     @Operation(summary = "Asignar una carrera a profesor")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Carrera asignada con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Profesor.class)))),
     })
     @PutMapping("/{idProfesor}/carrera/{idCarrera}")
     public ResponseEntity<?> assignCarreraProfesor(@PathVariable Integer idProfesor, @PathVariable Integer idCarrera){
