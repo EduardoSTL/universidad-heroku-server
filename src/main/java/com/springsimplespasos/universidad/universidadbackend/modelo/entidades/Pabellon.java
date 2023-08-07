@@ -13,7 +13,6 @@ import java.util.Set;
 
 @Entity
 @Data
-@Builder
 @Table(name = "pabellones")
 public class Pabellon implements Serializable {
 

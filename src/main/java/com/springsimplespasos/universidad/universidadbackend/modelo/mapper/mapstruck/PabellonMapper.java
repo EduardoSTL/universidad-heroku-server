@@ -15,6 +15,6 @@ public interface PabellonMapper {
     @Mapping(target = "pabellon", ignore = true)
     @Mapping(target = "medidas", ignore = true)
     @Mapping(target = "pizarron", ignore = true)
-    @Mapping(target = "cantidadPupitres", source = "cantidad_pupitres")
+    @Mapping(target = "cantidadPupitres", ignore = true)
     AulaDTO mapAula(Aula aula);
 }

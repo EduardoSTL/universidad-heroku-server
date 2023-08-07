@@ -21,7 +21,6 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "carreras")
 public class Carrera implements Serializable {
 

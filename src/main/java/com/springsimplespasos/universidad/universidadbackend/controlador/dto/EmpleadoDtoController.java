@@ -43,7 +43,7 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Obtener todos los registros")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Todos los registros de empleados",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping
     public ResponseEntity<?> findAllEmpleados(){
@@ -57,9 +57,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar registro por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> findEmpleadoById(@PathVariable Integer id){
@@ -77,12 +77,12 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Crea un registro de empleado")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro creado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+            @ApiResponse(responseCode = "201 Created", description = "Registro creado con exito",
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "422", description = "Error al crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
-    @GetMapping
+    @PostMapping("/empleados")
     public ResponseEntity<?> createEmpleado(@Valid @RequestBody PersonaDTO personaDTO, BindingResult result){
         Map<String, Object> mensaje = new HashMap<>();
         if (result.hasErrors()){
@@ -99,11 +99,11 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "422", description = "Error al actualizar el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> updateEmpleado(@PathVariable Integer id, @Valid @RequestBody EmpleadoDTO empleadoDTO, BindingResult result){
@@ -138,9 +138,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Eliminar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmpleadoId(@PathVariable Integer id){
@@ -159,9 +159,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar un registro por nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/nombre-apellido/{nombre}/{apellido}")
     public ResponseEntity<?> findEmpleadoNombreApellido(@PathVariable String nombre, @PathVariable String apellido){
@@ -180,9 +180,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar un registro por DNI")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con el DNI",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/empleado-dni")
     public ResponseEntity<Map<String, Object>> findAlumnoDni(@RequestParam String dni){
@@ -201,9 +201,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @Operation(summary = "Buscar todos los empleados por tipo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/tipo-empleado")
     public ResponseEntity<?> findEmpleadosTipoEmpleado(@RequestBody TipoEmpleado tipoEmpleado){

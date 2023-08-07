@@ -44,7 +44,8 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar todos los registros de aula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "todos los registros de alumnos", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+            @ApiResponse(responseCode = "200", description = "todos los registros de alumnos",
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping
     public ResponseEntity<?> findAllAulas(){
@@ -62,9 +63,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Buscar aula por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro obtenido",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/{id}")
     public ResponseEntity<?> findAulaById(@PathVariable Integer id) {
@@ -88,9 +89,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Crear un Aula")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "se creo el registro de alumno",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PostMapping
     public ResponseEntity<?> createAula(@Valid @RequestBody AulaDTO aulaDTO, BindingResult result){
@@ -109,11 +110,11 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Actualizar un registro de Aula")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se actualizó el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con el id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PutMapping("/{id}")
     public ResponseEntity<?> updateAula(@PathVariable Integer id,@Valid @RequestBody AulaDTO aulaDTO,BindingResult result){
@@ -147,9 +148,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Borra un registro de Aula")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se borro el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAlumnoById(@PathVariable Integer id){
@@ -169,11 +170,11 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Buscar aulas por pizarron")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con ese pizarron",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
-    @PostMapping("/aulas-pizarras")
+    @GetMapping("/aulas-pizarras")
     public  ResponseEntity<?>findAulasByPizarron(@Valid @RequestBody Pizarron pizarron, BindingResult result){
         Map<String,Object> mensaje = new HashMap<>();
         if (result.hasErrors()){
@@ -198,11 +199,11 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Buscar aulas por pabellon")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con ese pabellon",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
-    @PostMapping("/aulas-pabellon")
+    @GetMapping("/aulas-pabellon")
     public ResponseEntity<?> findAulasByPabellonNombre(@RequestBody String nombre){
         Map<String,Object> mensaje = new HashMap<>();
         List<Aula> aulas = (List<Aula>) service.findAulasByPabellonNombre(nombre);
@@ -223,9 +224,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Buscar aulas por nroAula")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con ese nro",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/nroaulas/{nroAula}")
     public ResponseEntity<?> findAulaByNroAula(@PathVariable Integer nroAula){
@@ -249,9 +250,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
     @Operation(summary = "Asignar aula a un pabellon")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
             @ApiResponse(responseCode = "400", description = "No existe registro con ese id",
-                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PutMapping("/{idAula}/pabellon/{idPabellon}")
     public ResponseEntity<?> assignPabellonToAula(@PathVariable Integer idAula, @PathVariable Integer idPabellon){

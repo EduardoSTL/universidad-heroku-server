@@ -12,7 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Data
-@Builder
 @Table(name = "aulas")
 public class Aula implements Serializable {
 
