@@ -41,12 +41,12 @@ public class PabellonController extends GenericController<Pabellon, PabellonDAO>
         return ResponseEntity.ok(mensaje);
     }
 
-    @PostMapping("/pabellones-localidad")
+    @GetMapping("/pabellones-localidad")
     public Iterable<Pabellon> findAllPabellonByLocalidad(@RequestParam String localidad){
         return service.findAllPabellonByLocalidad(localidad);
     }
 
-    @PostMapping("/pabellones-nombre")
+    @GetMapping("/pabellones-nombre")
     public Iterable<Pabellon> findAllPabellonByNombre(@RequestParam String nombre){
         return service.findAllPabellonByNombre(nombre);
     }

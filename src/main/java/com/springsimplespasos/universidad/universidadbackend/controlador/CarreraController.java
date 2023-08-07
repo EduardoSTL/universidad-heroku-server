@@ -95,17 +95,17 @@ public class CarreraController extends GenericController<Carrera, CarreraDAO>{
     }
 
 
-    @PostMapping("/busca-carreras")
+    @GetMapping("/busca-carreras")
     public Iterable<Carrera> findCarreraByNombreContains(@RequestParam String carrera){
         return service.findCarrerasByNombreContains(carrera);
     }
 
-    @PostMapping("/busca-carreras/ignorecase")
+    @GetMapping("/busca-carreras/ignorecase")
     public Iterable<Carrera> findCarreraByNombreContainsIgnoreCase(@RequestParam String carrera){
         return service.findCarrerasByNombreContainsIgnoreCase(carrera);
     }
 
-    @PostMapping("/busca-carreras/{anios}")
+    @GetMapping("/busca-carreras/{anios}")
     public Iterable<Carrera> findCarreraByCantidadAniosAfter(@PathVariable Integer anios){
         return service.findCarrerasByCantidadAniosAfter(anios);
     }

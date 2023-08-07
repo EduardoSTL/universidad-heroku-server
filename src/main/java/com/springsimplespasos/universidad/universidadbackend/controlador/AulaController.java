@@ -28,11 +28,11 @@ public class AulaController extends GenericController<Aula, AulaDAO>{
         this.pabellonDAO = pabellonDAO;
     }
 
-    @PostMapping("/aulas-pizarras")
+    @GetMapping("/aulas-pizarras")
     public  Iterable<Aula>findAulasByPizarron(@RequestBody Pizarron pizarron){
         return service.findAulasByPizarron(pizarron);
     }
-    @PostMapping("/aulas-pabellon")
+    @GetMapping("/aulas-pabellon")
     public Iterable<Aula>findAulasByPabellonNombre(@RequestBody String nombre){
         return service.findAulasByPabellonNombre(nombre);
     }
