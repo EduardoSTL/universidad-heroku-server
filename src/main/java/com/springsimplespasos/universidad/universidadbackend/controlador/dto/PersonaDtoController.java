@@ -75,7 +75,6 @@ public class PersonaDtoController extends GenericDtoController<Persona, PersonaD
             dto =alumnoMapper.mapAlumno((Alumno) personaEntidad);
         }else if(personaEntidad instanceof Profesor){
             dto =profesorMapper.mapProfesor((Profesor) personaEntidad);
-
         }else  if (personaEntidad instanceof Empleado){
             dto =empleadoMapper.mapEmpleado((Empleado) personaEntidad);
         }
