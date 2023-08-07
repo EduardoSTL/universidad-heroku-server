@@ -58,7 +58,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
         return ResponseEntity.ok().body(mensaje);
     }
 
-    @Operation(summary = "Buscar pabellon por id")
+    @Operation(summary = "Buscar pabellon por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),

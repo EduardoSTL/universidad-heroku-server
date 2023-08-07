@@ -146,7 +146,7 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
         return ResponseEntity.ok().body(mensaje);
     }
 
-    @Operation(summary = "Eliminar un registro ")
+    @Operation(summary = "Eliminar un registro")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),

@@ -60,7 +60,7 @@ public class AlumnoDtoController extends PersonaDtoController{
         return ResponseEntity.ok().body(mensaje);
     }
 
-    @Operation(summary = "Get ALUMNO by ID")
+    @Operation(summary = "Buscar alumno por ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "2XX", description = "registro de alumno",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
@@ -83,7 +83,7 @@ public class AlumnoDtoController extends PersonaDtoController{
         return ResponseEntity.ok(mensaje);
     }
 
-    @Operation(summary = "Create ALUMNO")
+    @Operation(summary = "Crear un registro de alumno")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "2XX", description = "registro creado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
