@@ -49,7 +49,8 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Obtener todos los registros")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "todos los registros de alumnos", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
+            @ApiResponse(responseCode = "200 OK", description = "todos los registros de alumnos",
+                    content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @GetMapping
     public ResponseEntity<?> findAllAlumnos(){
@@ -62,11 +63,11 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Buscar alumno por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "2XX", description = "registro de alumno",
+            @ApiResponse(responseCode = "200 OK", description = "registro de alumno",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "4XX", description = "registro de alumno no existe",
+            @ApiResponse(responseCode = "404 Not Found", description = "registro de alumno no existe",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "5XX", description = "server error",
+            @ApiResponse(responseCode = "500 Internal Server Error", description = "server error",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @GetMapping("/{id}")
@@ -85,11 +86,11 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Crear un registro de alumno")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "2XX", description = "registro creado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "registro creado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "4XX", description = "error al crear un nuevo alumno",
+            @ApiResponse(responseCode = "400 Bad Request", description = "error al crear un nuevo alumno",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "5XX", description = "server error",
+            @ApiResponse(responseCode = "500 Internal Server Error", description = "server error",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @PostMapping
@@ -108,11 +109,11 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se modifico el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se modifico el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No se pudo crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @PutMapping("/{id}")
@@ -145,9 +146,9 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Eliminar un registro por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @DeleteMapping("/{id}")
@@ -167,9 +168,9 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Buscar registro por nombre y apellido")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @GetMapping("/nombre-apellido/{nombre}/{apellido}")
@@ -188,9 +189,9 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Buscar registro por DNI")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con DNI",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con DNI",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @GetMapping("/alumno-dni")
@@ -209,9 +210,9 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Asignar carrera a alumno")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se asigno carrera ",
+            @ApiResponse(responseCode = "200 OK", description = "Se asigno carrera ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @PutMapping("/{idAlumno}/carrera/{idCarrera}")
@@ -242,9 +243,9 @@ public class AlumnoDtoController extends PersonaDtoController{
 
     @Operation(summary = "Buscar todos los alumnos de una carrera")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro los registros ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro los registros ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))),
     })
     @GetMapping("/alumnos-carrera/{carrera}")

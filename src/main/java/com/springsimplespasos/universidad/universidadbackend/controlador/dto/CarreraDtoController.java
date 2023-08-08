@@ -39,11 +39,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Obtener todas las carreras")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "2XX", description = "registro de carreras",
+            @ApiResponse(responseCode = "200 OK", description = "registro de carreras",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "4XX", description = "no existen carreras",
+            @ApiResponse(responseCode = "404 Not Found", description = "no existen carreras",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "5XX", description = "server error",
+            @ApiResponse(responseCode = "500 Internal Server Error", description = "server error",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping
@@ -61,9 +61,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Buscar registro por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro obtenido",
+            @ApiResponse(responseCode = "200 OK", description = "Registro obtenido",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("/{id}")
@@ -88,9 +88,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Crear un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "se creo el registro de alumno",
+            @ApiResponse(responseCode = "200 OK", description = "se creo el registro de alumno",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No se pudo crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @PostMapping
@@ -111,11 +111,11 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro actualizado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "422", description = "No se pudo actualizar el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No se pudo actualizar el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con el id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con el id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @PutMapping("/{id}")
@@ -148,9 +148,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Eliminar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "registro eliminado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @DeleteMapping("/{id}")
@@ -170,9 +170,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Buscar todos las carreras por nombre si contiene")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registros encontrados",
+            @ApiResponse(responseCode = "200 OK", description = "Registros encontrados",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("/find-carreras")
@@ -194,9 +194,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Buscar todos las carreras por nombre ignorando")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registros encontrados",
+            @ApiResponse(responseCode = "200 OK", description = "Registros encontrados",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe el registro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe el registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("/find-carreras/ignorecase")
@@ -218,9 +218,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Buscar todas las carreras por cantidad de años")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registros encontrados",
+            @ApiResponse(responseCode = "200 OK", description = "Registros encontrados",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe el registro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe el registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("/find-carreras/anios/{anios}")
@@ -242,9 +242,9 @@ public class CarreraDtoController extends GenericDtoController<Carrera, CarreraD
 
     @Operation(summary = "Buscar todas las carreras por nombre y apellido del profesor")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registros encontrados",
+            @ApiResponse(responseCode = "200 OK", description = "Registros encontrados",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe el registro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe el registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Carrera.class)))),
     })
     @GetMapping("profesor-carreras/{nombre}/{apellido}")

@@ -44,7 +44,7 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar todos los registros de aula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "todos los registros de alumnos",
+            @ApiResponse(responseCode = "200 OK", description = "todos los registros de alumnos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping
@@ -62,9 +62,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar aula por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro obtenido",
+            @ApiResponse(responseCode = "200 OK", description = "Registro obtenido",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/{id}")
@@ -88,9 +88,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Crear un Aula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "se creo el registro de alumno",
+            @ApiResponse(responseCode = "200 OK", description = "se creo el registro de alumno",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No se pudo crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PostMapping
@@ -109,11 +109,11 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Actualizar un registro de Aula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se actualizó el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se actualizó el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "422", description = "No se pudo crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No se pudo crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con el id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con el id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PutMapping("/{id}")
@@ -147,9 +147,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Borra un registro de Aula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se borro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se borro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @DeleteMapping("/{id}")
@@ -169,9 +169,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar aulas por pizarron")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con ese pizarron",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con ese pizarron",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/aulas-pizarras")
@@ -198,9 +198,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar aulas por pabellon")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con ese pabellon",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con ese pabellon",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/aulas-pabellon")
@@ -223,9 +223,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Buscar aulas por nroAula")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con ese nro",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con ese nro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @GetMapping("/nroaulas/{nroAula}")
@@ -249,9 +249,9 @@ public class AulaDtoController extends GenericDtoController<Aula, AulaDAO> {
 
     @Operation(summary = "Asignar aula a un pabellon")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Se encontro el registro ",
+            @ApiResponse(responseCode = "200 OK", description = "Se encontro el registro ",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con ese id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con ese id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Aula.class)))),
     })
     @PutMapping("/{idAula}/pabellon/{idPabellon}")

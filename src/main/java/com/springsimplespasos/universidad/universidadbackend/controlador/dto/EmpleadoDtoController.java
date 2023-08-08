@@ -42,7 +42,7 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Obtener todos los registros")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Todos los registros de empleados",
+            @ApiResponse(responseCode = "200 OK", description = "Todos los registros de empleados",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping
@@ -56,9 +56,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Buscar registro por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/{id}")
@@ -79,7 +79,7 @@ public class EmpleadoDtoController extends PersonaDtoController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201 Created", description = "Registro creado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "422", description = "Error al crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "Error al crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @PostMapping("/empleados")
@@ -98,11 +98,11 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro actualizado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "422", description = "Error al actualizar el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "Error al actualizar el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @PutMapping("/{id}")
@@ -137,9 +137,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Eliminar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @DeleteMapping("/{id}")
@@ -158,9 +158,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Buscar un registro por nombre y apellido")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/nombre-apellido/{nombre}/{apellido}")
@@ -179,9 +179,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Buscar un registro por DNI")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con el DNI",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No existe registro con el DNI",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/empleado-dni")
@@ -200,9 +200,9 @@ public class EmpleadoDtoController extends PersonaDtoController {
 
     @Operation(summary = "Buscar todos los empleados por tipo")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro",
+            @ApiResponse(responseCode = "400 Bad Request", description = "No existe registro",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Empleado.class)))),
     })
     @GetMapping("/tipo-empleado")
