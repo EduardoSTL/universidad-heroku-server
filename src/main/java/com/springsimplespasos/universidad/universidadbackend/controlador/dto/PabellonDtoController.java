@@ -43,7 +43,7 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Obtiene todos los registros")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "todos los registros de alumnos",
+            @ApiResponse(responseCode = "200 OK", description = "todos los registros de alumnos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping
@@ -60,9 +60,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Buscar pabellon por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping("/{id}")
@@ -86,9 +86,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Crear un registro de pabellon")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "registro creado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "registro creado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "422", description = "Error al crear el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "Error al crear el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @PostMapping
@@ -107,11 +107,11 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Actualizar un registro")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro actualizado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro actualizado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "422", description = "Error al actualizar el registro: Datos no validos",
+            @ApiResponse(responseCode = "400 Bad Request", description = "Error al actualizar el registro: Datos no validos",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @PutMapping("/{id}")
@@ -144,9 +144,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Eliminar un registro por ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro eliminado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro eliminado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con id",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con id",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @DeleteMapping("/{id}")
@@ -166,9 +166,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Buscar registro por localidad")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con la localidad ingresada",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con la localidad ingresada",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping("/pabellones-localidad")
@@ -190,9 +190,9 @@ public class PabellonDtoController extends GenericDtoController<Pabellon, Pabell
 
     @Operation(summary = "Buscar pabellones por nombre")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Registro encontrado con exito",
+            @ApiResponse(responseCode = "200 OK", description = "Registro encontrado con exito",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
-            @ApiResponse(responseCode = "400", description = "No existe registro con nombre",
+            @ApiResponse(responseCode = "404 Not Found", description = "No existe registro con nombre",
                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = Pabellon.class)))),
     })
     @GetMapping("/pabellones-nombre")
