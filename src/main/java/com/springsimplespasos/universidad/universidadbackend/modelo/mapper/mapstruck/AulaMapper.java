@@ -13,6 +13,6 @@ public interface AulaMapper {
     Aula mapAula(AulaDTO aulaDTO);
     @Mapping(target = "mts2", ignore = true)
     //@Mapping(target = "pabellonDTO", ignore = true)
-        @Mapping(target = "aulas", ignore = true)
+        @Mapping(target = "aulaDTOS", ignore = true)
     PabellonDTO mapPabellonToDTO(Pabellon pabellon);
 }
